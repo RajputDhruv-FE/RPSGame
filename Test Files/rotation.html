@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Random Moving Emojis</title>
-    <link rel="stylesheet" href="/Lobby/signup.css" />
+    <!-- <link rel="stylesheet" href="/Lobby/signup.css" /> -->
     <style>
       * {
         margin: 0;
@@ -18,7 +18,7 @@
         /* display: flex; */
         justify-content: center;
         align-items: center;
-        background-color: #000000;
+        /* background-color: #000000; */
         position: relative;
       }
       .bg-container {
@@ -68,10 +68,58 @@
           transform: rotate(720deg);
         }
       }
+   
+#username-input {
+  padding: 10px;
+  font-size: 18px;
+  width: 300px;
+  margin-top: 20px;
+}
+
+#username-input:focus {
+  outline: none;
+  border: 2px solid #4caf50;
+}
+
+#welcome-message {
+  font-size: 24px;
+  margin-bottom: 20px;
+  white-space: nowrap;
+  border-right: 2px solid black;
+  display: inline-block;
+  letter-spacing: 2px;
+  /* opacity: 0; */
+  text-align: center;
+  animation: blink-cursor 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+    opacity: 1;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes blink-cursor {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.typing-effect {
+  width: 0;
+  overflow: hidden;
+  animation: typing 2s steps(15, end) forwards;
+}
+      
     </style>
   </head>
   <body>
-    <div class="bg-container">
+    <!-- <div class="bg-container">
       <div class="emoji-container">
         <div class="emoji">
           <img id="s1" src="/Assests/scissor-cut-unscreen.gif" alt="" />
@@ -102,13 +150,14 @@
         </div>
         <div class="emoji"><img id="s4" src="/Assests/stone.png" alt="" /></div>
       </div>
-    </div>
+    </div> -->
     <div class="container">
       <div class="main-container">
         <h1 class="mainTitle">Rock, Paper & Sicssors</h1>
         <form action="" class="formContainer">
-          <h2 class="title">Signup</h2>
+          <h2 class="title"></h2>
           <div class="input-container">
+            
             <input
               class="uname"
               type="text"
@@ -116,6 +165,8 @@
               placeholder="Username"
               required />
             <i class="ri-user-fill"></i>
+            <h1 id="welcome-message" style="color:black;">xfgnsfh</h1>
+           
           </div>
           <div class="input-container email-container">
             <i class="ri-mail-add-fill"></i>
@@ -186,6 +237,49 @@
         // Start the movement
         moveEmoji();
       });
+
+      const inputField = document.getElementById("username");
+const welcomeMessage = document.getElementById("welcome-message");
+
+let welcomeText = "Welcome ";
+let isTypingStarted = false;
+
+inputField.addEventListener("focus", () => {
+  if (!isTypingStarted) {
+    showWelcomeMessage();
+    isTypingStarted = true;
+  }
+});
+
+inputField.addEventListener("input", () => {
+  updateWelcomeMessage(inputField.value);
+});
+
+function showWelcomeMessage() {
+  welcomeMessage.textContent = "";
+  welcomeMessage.classList.remove("typing-effect");
+  welcomeMessage.style.opacity = "1";
+
+  // Start the typing effect
+  let i = 0;
+  const typeWriter = setInterval(() => {
+    if (i < welcomeText.length) {
+      welcomeMessage.textContent += welcomeText.charAt(i);
+      i++;
+    } else {
+      clearInterval(typeWriter);
+    }
+  }, 100);
+}
+
+function updateWelcomeMessage(username) {
+  if (username === "") {
+    welcomeMessage.textContent = welcomeText;
+  } else {
+    welcomeMessage.textContent = `${welcomeText}${username}`;
+  }
+}
+
     </script>
   </body>
 </html>

@@ -34,6 +34,7 @@ body {
     top: 2rem;
     font-size: 5rem;
     letter-spacing: 2px;
+
   }
   .bg-login {
     position: absolute;
@@ -57,11 +58,12 @@ body {
     border-radius: 10px;
     backdrop-filter: blur(10px);
     border: 1px solid #fff;
-
+    margin-top: 4rem;
   }
   .title {
     font-size: 3rem;
     letter-spacing: 2px;
+   
   }
   .input-container {
     width: 70%;
@@ -171,3 +173,43 @@ body {
       transform: rotate(720deg);
     }
   }
+
+
+  
+
+  
+
+  
+  #welcome-message {
+    font-size: 24px;
+    white-space: nowrap;
+    display: inline-block;
+    letter-spacing: 2px;
+    opacity: 0;
+    text-align: center;
+    animation: blink-cursor 0.75s step-end infinite;
+  }
+  
+  @keyframes typing {
+    from {
+      width: 0;
+      opacity: 1;
+    }
+    to {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+  
+  @keyframes blink-cursor {
+    50% {
+      border-color: transparent;
+    }
+  }
+  
+  .typing-effect {
+    width: 0;
+    overflow: hidden;
+    animation: typing 2s steps(15, end) forwards;
+  }
+  
